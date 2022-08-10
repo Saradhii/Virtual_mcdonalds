@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        #showfood
+        {
+            width:50%;
+            margin:auto;
+            border:2px solid blueviolet;
+            margin-top: 50px;
+        }
+        #showfood>div{
+            padding:10px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="foodorder()">Order Food</button>
+    <select id="food">
+        <option value="fries">Fries</option>
+        <option value="pizza">Pizza</option>
+        <option value="coke">Coke</option>
+        <option value="nuggets">Nuggets</option>
+        <option value="friedchicken">Fried Chicken</option>
+    </select>
+    <div id="showfood"></div>
+</body>
+</html>
+<script>
+
+    function get(id){
+        return document.getElementById(id).value;
+    }
+
+    function foodorder(){
+        let food=get("food");
+        let status = "open";
+        let foodPromise = new Promise(function(resolve,reject){
+
+
+            let time= Math.random()*5000;
+            var ordernumber = Math.floor((Math.random() * 6000) + 1000);
+
+            if(status==="close"){
+                reject("Food not avaliable now!");
+            }
+            else
+            {
+                setTimeout(function(){
+                resolve(food);
+                },time);
+            }
+         });
+        foodPromise.then(function(res){
+            console.log(`${res} is ready !`);
+            let time= Math.floor(Math.random()*5000); 
+            var ordernumber = Math.floor((Math.random() * 6000) + 1000);
+            let foodorder1=document.querySelector("#showfood");
+            foodorder1.innerHTML=null;
+            switch(res)
+            {
+                case "fries":
+                    alert(`${res} is ready! with order number ${ordernumber} , In just ${time} seconds`);
+                    var div = document.createElement("div");
+                    var divi = document.createElement("div");
+                    var img = document.createElement("img");
+                    var src="https://c4.wallpaperflare.com/wallpaper/666/302/422/food-potato-french-fries-hd-wallpaper-preview.jpg";
+                    img.src=src;
+                    divi.append(img);
+                    div.append(divi);
+                    document.querySelector("#showfood").append(div);
+                    break;
+                case "pizza":
+                    alert(`${res} is ready! with order number ${ordernumber} , In just ${time} seconds`);
+                    var div = document.createElement("div");
+                    var divi = document.createElement("div");
+                    var img = document.createElement("img");
+                    var src="https://c4.wallpaperflare.com/wallpaper/234/543/684/food-pizza-wallpaper-preview.jpg";
+                    img.src=src;
+                    divi.append(img);
+                    div.append(divi);
+                    document.querySelector("#showfood").append(div);
+                    break;
+                case "coke":
+                    alert(`${res} is ready! with order number ${ordernumber} , In just ${time} seconds`);
+                    var div = document.createElement("div");
+                    var divi = document.createElement("div");
+                    var img = document.createElement("img");
+                    var src="https://c4.wallpaperflare.com/wallpaper/285/717/118/coca-coke-cola-cubes-wallpaper-preview.jpg";
+                    img.src=src;
+                    divi.append(img);
+                    div.append(divi);
+                    document.querySelector("#showfood").append(div);
+                    break;
+                case "nuggets":
+                    alert(`${res} is ready! with order number ${ordernumber} , In just ${time} seconds`);
+                    var div = document.createElement("div");
+                    var divi = document.createElement("div");
+                    var img = document.createElement("img");
+                    var src="https://c4.wallpaperflare.com/wallpaper/919/466/550/burgers-ketchup-lettuce-potatoes-wallpaper-preview.jpg";
+                    img.src=src;
+                    divi.append(img);
+                    div.append(divi);
+                    document.querySelector("#showfood").append(div);
+                    break;
+                case "friedchicken":
+                    alert(`${res} is ready! with order number ${ordernumber} , In just ${time} seconds`);
+                    var div = document.createElement("div");
+                    var divi = document.createElement("div");
+                    var img = document.createElement("img");
+                    var src="https://media.istockphoto.com/photos/plate-of-fried-chicken-on-blue-plaid-towel-picture-id452813985?k=20&m=452813985&s=612x612&w=0&h=8EL4NfG-jGwkAZtfEAY0180mmU6jQoj6I1rZtdo4gy8=";
+                    img.src=src;
+                    divi.append(img);
+                    div.append(divi);
+                    document.querySelector("#showfood").append(div);
+                    break;
+            }
+        });
+
+        foodPromise.catch(function(error){
+            console.log("error");
+        });
+        
+    }
+
+
+</script>
